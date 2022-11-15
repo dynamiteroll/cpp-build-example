@@ -2,14 +2,18 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: change configure permission
+      run: chmod +x configure
     - name: configure
       run: ./configure
     - name: make
       run: make
+    - name: run helloworld
+      run: ./hello
